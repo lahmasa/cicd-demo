@@ -3,8 +3,8 @@
 #include <vector>
 #include <cstdlib>
 
-int main() {
-    const std::string filename = "parallel_hello.h5";
+int main(int argc, char** argv) {
+    std::string filename = "parallel_hello.h5";
 
     if (argc > 1) {
         filename = argv[1];
