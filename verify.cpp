@@ -5,6 +5,11 @@
 
 int main() {
     const std::string filename = "parallel_hello.h5";
+
+    if (argc > 1) {
+        filename = argv[1];
+    }
+
     const std::string dataset_name = "rank_data";
 
     try {
@@ -21,9 +26,11 @@ int main() {
         std::cout << "Verifying dataset: ";
         for (hsize_t i = 0; i < dims[0]; ++i) {
             std::cout << data[i] << " ";
-            if (data[i] != static_cast<int>(i)) {
+            if (data[i] != 3 * static_cast<int>(i)) {
                 std::cerr << "\nVerification failed at index " << i
-                          << ": expected " << i << ", got " << data[i] << std::endl;
+                        << ": expected " << 3 * static_cast<int>(i)
+                        << ", got " << data[i] << std::endl;
+
                 return EXIT_FAILURE;
             }
         }
